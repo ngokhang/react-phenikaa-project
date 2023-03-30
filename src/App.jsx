@@ -1,7 +1,11 @@
 import React from 'react';
+import "./App.css";
+import RegisterPage from './RegisterAccount/RegisterAccount';
 
 function App() {
-  return <h1>Hello frkhjrewfhewjnkjw</h1>;
+  return (
+    <RegisterPage />
+  );
 }
 
 export default App;
