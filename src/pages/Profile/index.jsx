@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Tabs } from 'antd';
 import EditProfile from './components/EditProfile';
+import ChangePassword from './components/ChangePassword';
 import './style.scss';
 
 Profile.propTypes = {};
@@ -16,7 +17,7 @@ function Profile(props) {
     {
       key: '2',
       label: `Change password`,
-      children: `Content of Tab Pane 2`,
+      children: <ChangePassword className="change_password"/>,
     },
   ];
   return (

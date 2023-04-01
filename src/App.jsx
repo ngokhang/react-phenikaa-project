@@ -1,9 +1,16 @@
 import { Layout } from 'antd';
 import { Content } from 'antd/es/layout/layout';
-import React from 'react';
+
 import './App.scss';
 import Profile from './pages/Profile';
 import Logout from './pages/Authentication/components/Logout';
+import React from 'react';
+import PropTypes from 'prop-types';
+import './style.scss';
+
+import { SearchOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+
 
 function App() {
   return (
