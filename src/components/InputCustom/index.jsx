@@ -32,8 +32,8 @@ function InputCustom(props) {
         name={name}
         type={type}
         id={id}
-        onChange={e => onChange(e)}
-        value={value}
+        onChange={onChange && (e => onChange(e))}
+        value={value && value}
         disabled={isDisabled && true}
         placeholder={!editType && placeholderStr}
         required

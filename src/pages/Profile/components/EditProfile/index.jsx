@@ -65,7 +65,7 @@ function EditProfile(props) {
           name={'username'}
           isDisabled={true}
           value={userData.username}
-          onChange={handleOnChange}
+          // onChange={handleOnChange}
           id="usernameInp"
         />
         <InputCustom
