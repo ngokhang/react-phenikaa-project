@@ -12,7 +12,7 @@ function App() {
       <Content style={{ padding: '0 50px' }} className="contentLayout">
         <Logout />
         <Login />
-        <Profile />
+        {/* <Profile /> */}
       </Content>
     </Layout>
   );
