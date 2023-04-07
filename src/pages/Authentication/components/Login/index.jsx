@@ -26,7 +26,7 @@ function Login() {
           },
         ]}
       >
-        <InputCustom placeholderStr={'User'} editType={true} className='input'/>
+        <InputCustom placeholderStr={'Your email'} editType={true} className='input'/>
       </Form.Item>
       <Form.Item
         name="password"
@@ -40,7 +40,7 @@ function Login() {
         <InputCustom placeholderStr={'Password'} editType={true} className='input'/>
       </Form.Item>
       <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
+        <Form.Item name="remember" valuePropName="checked">
           <Checkbox className="remember">Remember me</Checkbox>
         </Form.Item>
       </Form.Item>

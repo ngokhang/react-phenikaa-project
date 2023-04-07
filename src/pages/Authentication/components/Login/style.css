@@ -1,5 +1,8 @@
 .login-form{
     width: 321px;
+    position: relative;
+    left: 555px;
+    top: 200px;
 }
 .hi{
     text-align: center;
@@ -17,19 +20,27 @@
     font-style: SemiBold;
     font-size: 16px;
     padding-top: 7px;
+    
 }
 .hai{
     margin-left: 111px;
     color: #1D1F22;
     text-decoration: underline;
     font-size: medium;
+    font-style: Regular;
+    font-size: 16px;
     font-family: Raleway;
 }
-.remember{
+
+.input{
+    border-bottom: #43464E;
+}
+.ant-checkbox-checked .ant-checkbox-inner{
+    background-color: black;
+    border-color:black ;
+}
+.ant-checkbox+span{
     font-family: Raleway;
     font-style: Regular;
     font-size: 16px;
-}
-.input{
-    border-bottom: #43464E;
 }

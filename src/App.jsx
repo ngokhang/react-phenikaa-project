@@ -3,12 +3,14 @@ import { Content } from 'antd/es/layout/layout';
 import React from 'react';
 import './App.scss';
 import HeaderLayout from './Layouts/Header';
+import Login from './pages/Authentication/components/Login';
 
 function App() {
   return (
-    <Layout>
-      <HeaderLayout />
-    </Layout>
+    <Login/>
+    // <Layout>
+    //   <HeaderLayout />
+    // </Layout>
   );
 }
 
