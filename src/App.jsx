@@ -11,7 +11,7 @@ function App() {
     <Layout style={{ padding: '0', backgroundColor: 'white' }}>
       <Content style={{ padding: '0 50px' }} className="contentLayout">
         <Logout />
-        <Login />
+        {/* <Login /> */}
         {/* <Profile /> */}
       </Content>
     </Layout>

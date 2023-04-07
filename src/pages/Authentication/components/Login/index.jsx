@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import './style.css'
+import InputCustom from "../../../../components/InputCustom";
 
 function Login() {
   const onFinish = (values) => {
@@ -24,7 +26,7 @@ function Login() {
           },
         ]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <InputCustom placeholderStr={'User'} editType={true} className='input'/>
       </Form.Item>
       <Form.Item
         name="password"
@@ -35,27 +37,21 @@ function Login() {
           },
         ]}
       >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
+        <InputCustom placeholderStr={'Password'} editType={true} className='input'/>
       </Form.Item>
       <Form.Item>
         <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox className="remember">Remember me</Checkbox>
         </Form.Item>
-
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+          LOGIN
         </Button>
-        Or <a href="">register now!</a>
+        <br />
+        <h2 className="hi">Don't have an account yet!</h2>
+        <a href="#" className="hai">Register now</a>
       </Form.Item>
     </Form>
   );
