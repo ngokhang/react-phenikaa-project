@@ -1,9 +1,9 @@
 import { Col, Row, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
-import axiosHehe from '../../../../shared/services/my-http';
 import './style.scss';
 import InputCustom from '../../../../components/InputCustom';
 import ButtonUpdate from '../ButtonUpdate';
+import axiosInstance from '../../../../shared/services/http-client';
 
 EditProfile.propTypes = {};
 
@@ -18,14 +18,14 @@ function EditProfile(props) {
 
   const handleOnClickUpdate = async e => {
     e.preventDefault();
-    await axiosHehe
+    await axiosInstance
       .put(`users/${userData.id}`, userData)
       .then(res => console.log(res));
   };
 
   useEffect(() => {
     async function fetchDataUser() {
-      await axiosHehe
+      await axiosInstance
         .get(`users/me`)
         .then(response => setUserData(response))
         .catch(err => console.log(err));
@@ -65,7 +65,7 @@ function EditProfile(props) {
           name={'username'}
           isDisabled={true}
           value={userData.username}
-          // onChange={handleOnChange}
+          onChange={handleOnChange}
           id="usernameInp"
         />
         <InputCustom
