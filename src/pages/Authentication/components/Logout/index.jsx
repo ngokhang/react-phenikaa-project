@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Dropdown, Row } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import './style.scss';
+import LoginContext from '../../../../utils/LoginContext';
 
 Logout.propTypes = {};
 
 function Logout(props) {
-  const [isLogin, setIsLogin] = useState(false);
+  const isLogin = useContext(LoginContext);
 
   const items = [
     {
@@ -30,7 +31,7 @@ function Logout(props) {
   const logOutAccount = e => {
     e.preventDefault();
     localStorage.clear();
-    setIsLogin(false);
+    console.log('hello world');
   };
 
   return (

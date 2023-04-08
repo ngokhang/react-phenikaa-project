@@ -1,14 +1,17 @@
 import { Layout } from 'antd';
-import { Content } from 'antd/es/layout/layout';
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import HeaderLayout from './Layouts/Header';
+import LoginContext from './utils/LoginContext';
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
   return (
-    <Layout>
-      <HeaderLayout />
-    </Layout>
+    <LoginContext.Provider value={isLogin}>
+      <Layout>
+        <HeaderLayout />
+      </Layout>
+    </LoginContext.Provider>
   );
 }
 
