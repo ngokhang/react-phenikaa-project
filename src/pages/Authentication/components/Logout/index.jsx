@@ -28,6 +28,24 @@ function Logout(props) {
       ),
     },
   ];
+  const items_2 = [
+    {
+      key: '1',
+      label: (
+        <a target="_blank" href="#">
+          Log in
+        </a>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <a target="_blank" href="#" onClick={e => logOutAccount(e)}>
+          Register
+        </a>
+      ),
+    },
+  ];
   const logOutAccount = e => {
     e.preventDefault();
     localStorage.clear();
@@ -37,21 +55,14 @@ function Logout(props) {
   return (
     <Row>
       <Col>
-        {isLogin ? (
-          <Dropdown menu={{ items }} placement="bottom">
-            <a href="#" style={{ color: 'black' }}>
-              <UserOutlined className="user-img" />
-            </a>
-          </Dropdown>
-        ) : (
-          <a
-            href="#"
-            style={{ color: 'black' }}
-            onClick={e => e.preventDefault()}
-          >
+        <Dropdown
+          menu={{ items: isLogin ? items : items_2 }}
+          placement="bottom"
+        >
+          <a href="#" style={{ color: 'black' }}>
             <UserOutlined className="user-img" />
           </a>
-        )}
+        </Dropdown>
       </Col>
     </Row>
   );
