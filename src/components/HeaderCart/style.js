@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Drawer, Row, Col } from 'antd';
+import { Drawer } from 'antd';
+import styled from 'styled-components';
 
 export const CartSVG = styled(ShoppingCartOutlined)`
   svg {

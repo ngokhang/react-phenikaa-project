@@ -12,13 +12,13 @@ function HeaderLayout(props) {
   return (
     <Header style={{ backgroundColor: 'white' }}>
       <Row>
-        <Col xs={24} md={10} className="left">
+        <Col xs={24} sm={12} md={10} className="left">
           <Row gutter={40}>
             <HeaderLogo />
             <HeaderNavigation />
           </Row>
         </Col>
-        <Col xs={24} md={14} className="right">
+        <Col xs={0} sm={12} md={14} className="right">
           <RowActions>
             <ColActions xs={18} md={12}>
               <SearchBar />

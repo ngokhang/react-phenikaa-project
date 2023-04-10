@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'antd';
 import { MenuContainer } from './style';
+import SearchBar from '../SearchBar';
 
 HeaderNavigation.propTypes = {};
 
@@ -20,6 +21,10 @@ function HeaderNavigation(props) {
     {
       label: 'Sport shoes'.toUpperCase(),
       key: 'sportShoes',
+      onClick: () => console.log('Hello world 3'),
+    },
+    {
+      label: <SearchBar />,
       onClick: () => console.log('Hello world 3'),
     },
   ];

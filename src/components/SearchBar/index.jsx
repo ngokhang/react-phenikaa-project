@@ -1,5 +1,5 @@
 import { SearchOutlined } from '@ant-design/icons';
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { InputComponent } from './style';
 import { Col, Row } from 'antd';
 import axiosInstance from '../../shared/services/http-client';
@@ -7,28 +7,37 @@ import axiosInstance from '../../shared/services/http-client';
 SearchBar.propTypes = {};
 
 function SearchBar(props) {
-  const [searchKey, setSearchKey] = useState(false);
+  const [searchKey, setSearchKey] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const [listProducts, setListProducts] = useState([]);
   const handleOnChange = e => {
     setSearchKey(e.target.value);
+    setIsTyping(true);
   };
   useEffect(() => {
-    async function searchProducts() {
-      const list = (
-        await axiosInstance.get(
-          `products?filters[name][$contains]=${searchKey}`
-        )
-      ).data;
-      setListProducts(list);
-    }
-    searchProducts();
+    const stoSearch = setTimeout(async () => {
+      setIsTyping(false);
+      setListProducts(
+        (
+          await axiosInstance.get(
+            `products?filters[name][$contains]=${searchKey.trim()}`
+          )
+        ).data
+      );
+      console.log(listProducts);
+      console.log(searchKey);
+    }, 1500);
+
+    return () => {
+      clearTimeout(stoSearch);
+    };
   }, [searchKey]);
-  console.log(listProducts);
   return (
     <Row>
       <Col>
         <InputComponent
           bordered={false}
+          name="searchInp"
           placeholder="Search products"
           onChange={handleOnChange}
           suffix={<SearchOutlined />}

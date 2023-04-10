@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Col, Dropdown, Row } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import './style.scss';
-import LoginContext from '../../../../utils/LoginContext';
+import { MyContext } from '../../../../utils/MyContext';
 
 Logout.propTypes = {};
 
 function Logout(props) {
-  const isLogin = useContext(LoginContext);
+  const loginState = useContext(MyContext);
 
   const items = [
     {
@@ -49,14 +49,14 @@ function Logout(props) {
   const logOutAccount = e => {
     e.preventDefault();
     localStorage.clear();
-    console.log('hello world');
+    loginState.setIsLogin(false);
   };
 
   return (
     <Row>
       <Col>
         <Dropdown
-          menu={{ items: isLogin ? items : items_2 }}
+          menu={{ items: loginState.isLogin ? items : items_2 }}
           placement="bottom"
         >
           <a href="#" style={{ color: 'black' }}>

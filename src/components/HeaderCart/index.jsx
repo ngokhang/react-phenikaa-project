@@ -2,18 +2,16 @@ import { Col } from 'antd';
 import React, { useContext, useState } from 'react';
 import EmptyCart from './components/EmptyCart';
 import { Cart, CartSVG, DrawerCart } from './style';
-import AppContext from 'antd/es/app/context';
-import LoginContext from '../../utils/LoginContext';
+import { MyContext } from '../../utils/MyContext';
 
 HeaderCart.propTypes = {};
 
 function HeaderCart(props) {
-  const isLogin = useContext(LoginContext).isLogin;
+  const isLogin = useContext(MyContext).isLogin;
   const [open, setOpen] = useState(false);
   const showDrawer = e => {
     e.preventDefault();
     setOpen(true);
-    console.log(isLogin);
   };
   const onClose = () => {
     setOpen(false);
