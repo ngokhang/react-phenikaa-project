@@ -7,7 +7,7 @@ import './style.scss';
 Logout.propTypes = {};
 
 function Logout(props) {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const items = [
     {

@@ -1,5 +1,6 @@
 import { Col, Row, Space } from 'antd';
 import React, { useState } from 'react';
+import axiosHehe from '../../../../shared/services/http-client';
 
 import InputCustom from '../../../../components/InputCustom';
 import ButtonUpdate from '../ButtonUpdate';
@@ -16,16 +17,15 @@ function ChangePassword(props) {
       setIsPasswordValid(false);
       return;
     }
+
   };
 
-  const validatePassword = password => {
-    return (
-      password.length >= 8 &&
-      /[a-z]/.test(password) &&
-      /[A-Z]/.test(password) &&
-      /[!@#$%^&*]/.test(password)
-    );
-  };
+  const validatePassword = (password) => {
+    return password.length >= 8 &&
+           /[a-z]/.test(password) &&
+           /[A-Z]/.test(password) &&
+           /[!@#$%^&*]/.test(password);
+  }
   return (
     <Row
       className="change_password"
@@ -47,15 +47,14 @@ function ChangePassword(props) {
           name={'newPassword'}
           id="newPasswordInp"
           value={newPassword}
-          onChange={e => {
+          onChange={(e) => {
             setNewPassword(e.target.value);
             setIsPasswordValid(true);
           }}
         />
         {!isPasswordValid && (
           <span style={{ color: 'red' }}>
-            Mật khẩu phải bao gồm ít nhất 8 ký tự, ít nhất 1 chữ hoa, 1 chữ
-            thường và 1 ký tự đặc biệt
+           Mật khẩu phải bao gồm ít nhất 8 ký tự, ít nhất 1 chữ hoa, 1 chữ thường và 1 ký tự đặc biệt
           </span>
         )}
       </Col>
