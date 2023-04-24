@@ -1,0 +1,7 @@
+.Pagination .ant-pagination-options{
+    display: none;
+}
+.Pagination{
+    position: relative;
+    left: 450px;
+}
