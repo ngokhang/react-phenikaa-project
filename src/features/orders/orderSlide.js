@@ -22,8 +22,10 @@ export const fetchOrdereList = createAsyncThunk(
 
 export const updateOrder = createAsyncThunk(
   'orders/updateOrder',
-  async ({ orderId, quantity, userId }) => {
+  async ({ orderId, quantity, userId }, thunkAPI) => {
     const res = await putUpdateOrder(orderId, quantity);
+
+    thunkAPI.dispatch(fetchOrdereList(userId));
   }
 );
 
@@ -36,9 +38,9 @@ export const deleteOrderAPI = createAsyncThunk(
 
 export const createOrderAPI = createAsyncThunk(
   'orders/createOrder',
-  async ({ quantity, product, user, total }) => {
+  async ({ quantity, product, user, total }, thunkAPI) => {
     const res = await postCreateOrder(quantity, product, user, total);
-    await getOrderList(user);
+    thunkAPI.dispatch(fetchOrdereList(user));
   }
 );
 
