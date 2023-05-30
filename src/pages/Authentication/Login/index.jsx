@@ -38,38 +38,6 @@ function Login(props) {
     toast.error('Wrong password or account');
   };
 
-  const handleLogin = async () => {
-    await axiosInstance
-      .post('auth/local', {
-        identifier: username,
-        password: password,
-      })
-      .then(result => {
-        const { jwt, user } = result;
-        console.log(user);
-        if (jwt.length !== 0) {
-          notifySuccess();
-          localStorage.setItem('at', jwt);
-          localStorage.setItem('userId', user.id);
-          loginContext.setIsLogin(true);
-          setTimeout(() => {
-            navigate('/');
-          }, 1500);
-        }
-      })
-      .catch(() => notifyFailure());
-  };
-
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      setIsTyping(false);
-    }, 1200);
-
-    return () => {
-      clearTimeout(debounce);
-    };
-  }, [username, password]);
-
   return (
     <Row className="login-page">
       <Col xs={16} lg={6}>
@@ -94,9 +62,6 @@ function Login(props) {
           <Button
             block
             className="btn btn-login"
-            onClick={() => {
-              handleLogin();
-            }}
           >
             <span>Login</span>
           </Button>
@@ -108,7 +73,6 @@ function Login(props) {
           </Link>
         </Space>
       </Col>
-      {/* {contextHolder} */}
       <ToastContainer autoClose={1000} />
     </Row>
   );
