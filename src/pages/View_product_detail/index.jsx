@@ -71,10 +71,10 @@ export default function ViewProduct(props) {
         if (orderListClone.length === 0) {
             dispatch(createOrderAPI({ quantity: 1, product: Number.parseInt(params.id), user: context.userId, total: productData.price }));
             setLoading(true);
-            setTimeout(() => {
-                setLoading(false);
-                window.location.reload();
-            }, 2000);
+            // setTimeout(() => {
+            //     setLoading(false);
+            //     window.location.reload();
+            // }, 2000);
             toast.success('Added this product to your cart!', {
                 position: "top-right",
                 autoClose: 350,
@@ -94,10 +94,10 @@ export default function ViewProduct(props) {
                 if (item.attributes.product.data.id === Number.parseInt(params.id)) {
                     dispatch(updateOrder({ orderId: item.id, quantity: item.attributes.quantity + quantity, userId: context.userId }));
                     setLoading(true);
-                    setTimeout(() => {
-                        setLoading(false);
-                        window.location.reload();
-                    }, 2000);
+                    // setTimeout(() => {
+                    //     setLoading(false);
+                    //     window.location.reload();
+                    // }, 2000);
                     toast.success('Added this product to your cart!', {
                         position: "top-right",
                         autoClose: 350,
@@ -118,10 +118,10 @@ export default function ViewProduct(props) {
         alert('not ');
         dispatch(createOrderAPI({ quantity: 1, product: Number.parseInt(params.id), user: context.userId, total: productData.price }));
         setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            window.location.reload();
-        }, 2000);
+        // setTimeout(() => {
+        //     setLoading(false);
+        //     window.location.reload();
+        // }, 2000);
         toast.success('Added this product to your cart!', {
             position: "top-right",
             autoClose: 350,

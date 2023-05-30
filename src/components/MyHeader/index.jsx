@@ -28,9 +28,9 @@ function MyHeader(props) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchOrdereList(localStorage.getItem('userId')));
-  }, [dispatch, open]);
+  // useEffect(() => {
+  //   dispatch(fetchOrdereList(localStorage.getItem('userId')));
+  // }, [dispatch, open]);
 
 
   const showDrawer = () => {
