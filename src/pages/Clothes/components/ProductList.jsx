@@ -53,7 +53,7 @@ const ProductList = () => {
     <div>
       <Spin spinning={loading} tip="Loading...">
         <div style={{ display: 'flex' }}>
-          <Menu mode="vertical" style={{ marginRight: '20px', width: "45%" }}>
+          <Menu mode="vertical" style={{ marginRight: '20px', width: "25%" }}>
             <Menu.Item key="clothes">
               <Link to="/clothes">Clothes</Link>
             </Menu.Item>
@@ -80,7 +80,7 @@ const ProductList = () => {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
-          <Pagination style={{ textalign: "center" }} current={currentPage} total={50} pageSize={pageSize} onChange={handlePageChange} />
+          <Pagination style={{ textalign: "center" }} current={currentPage} total={28} pageSize={pageSize} onChange={handlePageChange} />
         </div>
       </Spin>
     </div>
