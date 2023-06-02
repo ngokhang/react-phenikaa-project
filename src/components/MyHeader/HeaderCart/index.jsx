@@ -9,7 +9,13 @@ import { CartSVG, DrawerCart } from './style';
 function HeaderCart(props) {
   const loginState = useContext(Context);
   const userId = localStorage.getItem('userId');
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const quantityOrders = useSelector(state => state.orders.quantityOrders);
+  const list = useSelector(state => state.orders.orderList);
+  useEffect(() => {
+    dispatch(fetchOrdereList(localStorage.getItem('userId')));
+  }, [dispatch, open])
 
 
   const showDrawer = () => {
@@ -25,10 +31,9 @@ function HeaderCart(props) {
         <>
           <CartSVG onClick={showDrawer} className="no-bd" />
 
-          <DrawerCart title={`Total item: ${0}`} placement="right" onClose={onClose} open={open}>
+          <DrawerCart title={`Total item: ${quantityOrders}`} placement="right" onClose={onClose} open={open}>
             <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              {0 ? (<EmptyCart onClose={onClose} />) : (<FilledCart />)}
-
+              {list.length === 0 ? (<EmptyCart onClose={onClose} />) : (<FilledCart _orderList={list} quantityOrders={quantityOrders} />)}
             </div>
           </DrawerCart>
         </>
