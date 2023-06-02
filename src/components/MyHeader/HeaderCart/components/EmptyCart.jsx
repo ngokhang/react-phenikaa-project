@@ -1,6 +1,5 @@
 import { Button } from 'antd';
 import React from 'react';
-// import './EmptyCart.scss';
 
 function EmptyCart({ onClose }) {
 
@@ -12,7 +11,7 @@ function EmptyCart({ onClose }) {
     <>
       <div className="cart-empty">
         <div className='content'>
-          <div className="empty-img"></div>
+          <div className="empty-img" style={{marginLeft:'90px'}}></div>
           <div className="empty-content">
             <p className="empty-title">Your bag is empty</p>
             <p className="cart-empty-text">

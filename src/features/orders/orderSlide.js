@@ -4,8 +4,9 @@ import {
   getOrderList,
   postCreateOrder,
   putUpdateOrder,
+  checkoutOrder,
 } from '../../shared/services/http-client';
-
+import axiosInstance from '../../shared/services/http-client';
 const initialState = {
   orderList: [],
   quantityOrders: 0,
@@ -20,12 +21,11 @@ export const fetchOrdereList = createAsyncThunk(
   }
 );
 
+
 export const updateOrder = createAsyncThunk(
   'orders/updateOrder',
-  async ({ orderId, quantity, userId }, thunkAPI) => {
+  async ({ orderId, quantity, userId }) => {
     const res = await putUpdateOrder(orderId, quantity);
-
-    thunkAPI.dispatch(fetchOrdereList(userId));
   }
 );
 
@@ -38,11 +38,33 @@ export const deleteOrderAPI = createAsyncThunk(
 
 export const createOrderAPI = createAsyncThunk(
   'orders/createOrder',
-  async ({ quantity, product, user, total }, thunkAPI) => {
+  async ({ quantity, product, user, total }) => {
     const res = await postCreateOrder(quantity, product, user, total);
-    thunkAPI.dispatch(fetchOrdereList(user));
+    await getOrderList(user);
   }
 );
+export const checkoutOrderAPIs = createAsyncThunk(
+  'orders/checkoutOrderAPI',
+  async ({ orders, total, userID }, thunkAPI) => {
+    const orderIDs = orders.map(order => order.id);
+    
+    try {
+      const data = {
+        total: total,
+        orders: orderIDs,
+      };
+      await Promise.all([
+        axiosInstance.post('/payments', { data }),
+        ...orders.map(order => axiosInstance.delete(`/orders/${order.id}`))
+      ]);
+
+      await thunkAPI.dispatch(fetchOrdereList(userID));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 
 export const orderSlice = createSlice({
   name: 'orders',
@@ -63,7 +85,6 @@ export const orderSlice = createSlice({
         state.orderList[action.payload].attributes.quantity;
     },
     getQuantityProduct: (state, action) => {
-      // payload : id cua san pham
       state.quantityProduct =
         state.orderList[
           state.orderList.findIndex(

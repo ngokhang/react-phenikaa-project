@@ -4,21 +4,24 @@ import InputCustom from '../../../../components/InputCustom';
 import axiosInstance from '../../../../shared/services/http-client';
 import ButtonUpdate from '../ButtonUpdate';
 
-ChangePassword.propTypes = {};
-
 function ChangePassword(props) {
   const [newPassword, setNewPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isUpdateSuccessful, setIsUpdateSuccessful] = useState(false);
 
   const handleOnChangeCurrentPassword = e => {
     setCurrentPassword(e.target.value);
-  }
+  };
+
+  const handleOnChangeNewPassword = e => {
+    setNewPassword(e.target.value);
+  };
 
   const handleOnChangePasswordConfirmation = e => {
     setPasswordConfirmation(e.target.value);
-  }
+  };
 
   const handleOnClickUpdate = async e => {
     e.preventDefault();
@@ -26,13 +29,17 @@ function ChangePassword(props) {
       setIsPasswordValid(false);
       return;
     }
+  
     console.log("Check current password: ", currentPassword);
     await axiosInstance.put('auth/change-password', {
       currentPassword,
       password: newPassword,
       passwordConfirmation: newPassword,
     });
+  
+    setIsUpdateSuccessful(true); // Đánh dấu cập nhật thành công
   };
+  
 
   const validatePassword = password => {
     return (
@@ -42,6 +49,7 @@ function ChangePassword(props) {
       /[!@#$%^&*]/.test(password)
     );
   };
+
   return (
     <Row
       className="change_password"
@@ -66,7 +74,7 @@ function ChangePassword(props) {
           name={'newPassword'}
           id="newPasswordInp"
           value={newPassword}
-          onChange={handleOnChangePasswordConfirmation}
+          onChange={handleOnChangeNewPassword}
         />
         {!isPasswordValid && (
           <span style={{ color: 'red' }}>
@@ -82,6 +90,8 @@ function ChangePassword(props) {
           placeholderStr={'Repeat Password'}
           name={'repeatPassword'}
           id="repeatPasswordInp"
+          value={passwordConfirmation}
+          onChange={handleOnChangePasswordConfirmation}
         />
       </Col>
       <Col xs={24} md={6}>
@@ -90,6 +100,12 @@ function ChangePassword(props) {
           title="Are you sure about that ?"
         />
       </Col>
+      {isUpdateSuccessful && (
+  <Col xs={24}>
+    <span style={{ color: 'green' }}>Change password successful</span>
+  </Col>
+)}
+
     </Row>
   );
 }

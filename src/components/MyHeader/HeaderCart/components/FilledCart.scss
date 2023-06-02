@@ -1,0 +1,30 @@
+.list-orders {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .btn-checkout {
+    height: unset;
+    border-radius: unset;
+    background-color: black;
+    color: white;
+    padding: 16px 15px !important;
+  }
+  
+  .total-price {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    span:first-child {
+      font-size: 16px;
+      line-height: 19px;
+      color: #1D1F22;
+    }
+    span:last-child {
+      font-size: 16px;
+      line-height: 28px;
+      color: #1D1F22;
+    }
+  }
