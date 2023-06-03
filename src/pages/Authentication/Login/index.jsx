@@ -12,62 +12,34 @@ import 'react-toastify/dist/ReactToastify.css';
 function Login(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
   const loginContext = useContext(Context);
   const navigate = useNavigate();
 
-  const onChangeUsernameInput = e => {
-    setUsername(e.target.value);
-    setIsTyping(true);
-  };
-
-  const onChangePasswordInput = e => {
-    setPassword(e.target.value);
-    setIsTyping(true);
-  };
-
-  const notifySuccess = () => {
-    toast.success('Login successful', {
-      closeOnClick: false,
-      pauseOnHover: false,
-      pauseOnFocusLoss: false,
-    });
-  };
-
-  const notifyFailure = () => {
-    toast.error('Wrong password or account');
-  };
-
   const handleLogin = async () => {
-    await axiosInstance
-      .post('auth/local', {
-        identifier: username,
-        password: password,
-      })
-      .then(result => {
-        const { jwt, user } = result;
-        console.log(user);
-        if (jwt.length !== 0) {
-          notifySuccess();
-          localStorage.setItem('at', jwt);
-          localStorage.setItem('userId', user.id);
-          loginContext.setIsLogin(true);
-          setTimeout(() => {
-            navigate('/');
-          }, 1500);
-        }
-      })
-      .catch(() => notifyFailure());
+    try {
+      const { data } = await axiosInstance.post('auth/local', { identifier: username, password });
+      const { jwt, user } = data;
+      if (jwt) {
+        localStorage.setItem('at', jwt);
+        localStorage.setItem('userId', user.id);
+        loginContext.setIsLogin(true);
+        toast.success('Login successful');
+        setTimeout(() => navigate('/'), 1500);
+      } else {
+        toast.error('Wrong password or account');
+      }
+    } catch (error) {
+      toast.error('Login failed');
+    }
   };
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      setIsTyping(false);
+      setUsername('');
+      setPassword('');
     }, 1200);
 
-    return () => {
-      clearTimeout(debounce);
-    };
+    return () => clearTimeout(debounce);
   }, [username, password]);
 
   return (
