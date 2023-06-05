@@ -30,7 +30,6 @@ function ProductCard({ imgUrl, name, price, id }) {
 
 
       if (orderListClone.some(item => item.attributes.product.data.id === id)) {
-        alert("2")
 
         orderListClone.some(item => {
           if (item.attributes.product.data.id === id) {
@@ -56,7 +55,6 @@ function ProductCard({ imgUrl, name, price, id }) {
         return;
       }
       dispatch(createOrderAPI({ quantity: 1, product: id, user: context.userId, total: price }));
-      alert(3);
       setLoading(true);
      
 
